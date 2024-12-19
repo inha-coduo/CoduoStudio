@@ -1,19 +1,29 @@
 {
+  "include": ["src/**/*", "vite-env.d.ts"],
   "compilerOptions": {
+    "resolveJsonModule": true,
     "jsx": "react-jsx", 
     "moduleResolution": "node",
+    "target": "ES5", // ES5로 변환하더라도 lib에 Promise 지원 추가
+    "lib": ["ES2015", "DOM"], // ES2015 라이브러리 추가 (Promise 포함)
+    "module": "commonjs",
+    "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["react", "react-dom"],
+    "types": ["react", "react-dom"], // 명시적으로 React와 React-DOM 추가
+    "typeRoots": ["./node_modules/@types"], 
     "baseUrl": "./",
+    "noImplicitAny": false,
+    "plugins": [
+      { "name": "@yarnpkg/pnpify" }
+    ],
     "paths": {
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"], 
+      "@styles/*": ["src/styles/*"],
+      "@types/*": ["src/types/*"],
       "*": ["node_modules/*"]
     }
-  },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  }
 }
